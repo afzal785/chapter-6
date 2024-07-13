@@ -1,0 +1,29 @@
+def graph_coloring(edges, n, k):
+    graph = {}
+    for edge in edges:
+        if edge[0] not in graph:
+            graph[edge[0]] = set()
+        if edge[1] not in graph:
+            graph[edge[1]] = set()
+        graph[edge[0]].add(edge[1])
+        graph[edge[1]].add(edge[0])
+
+    colors = {}
+    for vertex in range(n):
+        neighbor_colors = set()
+        for neighbor in graph[vertex]:
+            if neighbor in colors:
+                neighbor_colors.add(colors[neighbor])
+        for color in range(k):
+            if color not in neighbor_colors:
+                colors[vertex] = color
+                break
+
+    return len(set(colors.values()))
+
+# Example Usage
+edges = [(0, 1), (1, 2), (2, 3), (3, 0), (0, 2)]
+n = 4
+k = 3
+max_regions_colored = graph_coloring(edges, n, k)
+print("Maximum number of regions colored with", k, "colors:", max_regions_colored)
