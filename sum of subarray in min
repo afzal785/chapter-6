@@ -1,0 +1,16 @@
+def sumSubarrayMins(arr):
+    MOD = 10**9 + 7
+    stack = []
+    arr = [0] + arr + [0]
+    res = 0
+    for i, x in enumerate(arr):
+        while stack and arr[stack[-1]] > x:
+            j = stack.pop()
+            k = stack[-1]
+            res += arr[j] * (i - j) * (j - k)
+        stack.append(i)
+    return res % MOD
+
+# Test the function with the provided examples
+print(sumSubarrayMins([3, 1, 2, 4]))  # Output: 17
+print(sumSubarrayMins([11, 81, 94, 43, 3]))  # Output: 444
