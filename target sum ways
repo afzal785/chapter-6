@@ -1,0 +1,22 @@
+from collections import defaultdict
+
+def findTargetSumWays(nums, target):
+    count = defaultdict(int)
+    count[0] = 1
+    for num in nums:
+        temp = defaultdict(int)
+        for key in count:
+            temp[key + num] += count[key]
+            temp[key - num] += count[key]
+        count = temp
+    return count[target]
+
+# Example 1
+nums1 = [1, 1, 1, 1, 1]
+target1 = 3
+print(findTargetSumWays(nums1, target1))  # Output: 5
+
+# Example 2
+nums2 = [1]
+target2 = 1
+print(findTargetSumWays(nums2, target2))  # Output: 1
