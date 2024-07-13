@@ -1,0 +1,26 @@
+def has_hamiltonian_cycle(edges, n):
+    graph = {i: set() for i in range(n)}
+    for edge in edges:
+        graph[edge[0]].add(edge[1])
+        graph[edge[1]].add(edge[0])
+
+    def dfs(node, visited, count):
+        visited.add(node)
+        if count == n:
+            return len(graph[node]) == 1 and 0 in graph[node]
+        for neighbor in graph[node]:
+            if neighbor not in visited:
+                if dfs(neighbor, visited, count + 1):
+                    return True
+        visited.remove(node)
+        return False
+
+    for node in range(n):
+        if dfs(node, set(), 1):
+            return True
+    return False
+
+# Example
+edges = [(0, 1), (1, 2), (2, 3), (3, 0), (0, 2), (2, 4), (4, 0)]
+n = 5
+print(has_hamiltonian_cycle(edges, n))  # Output: True
