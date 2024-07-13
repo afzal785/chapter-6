@@ -1,0 +1,8 @@
+from itertools import chain, combinations
+
+def all_subsets(s):
+    return [list(subset) for subset in chain.from_iterable(combinations(s, r) for r in range(len(s) + 1))]
+
+A = [1, 2, 3]
+result = all_subsets(A)
+print(result)
