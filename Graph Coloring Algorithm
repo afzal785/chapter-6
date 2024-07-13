@@ -1,0 +1,23 @@
+def graph_coloring(adj_list):
+    colors = {}
+    result = 0
+    for node in sorted(adj_list, key=lambda x: len(adj_list[x]), reverse=True):
+        neighbor_colors = set(colors.get(nei) for nei in adj_list[node])
+        colors[node] = next(color for color in range(len(adj_list)) if color not in neighbor_colors)
+        result = max(result, colors[node] + 1)
+    return result
+
+# Adjacency list representation of the graph
+adj_list = {
+    0: [1, 3, 2],
+    1: [0, 2],
+    2: [1, 0, 3],
+    3: [2, 0]
+}
+
+# Number of vertices
+n = 4
+
+# Maximum number of regions that can be colored
+max_regions_colored = graph_coloring(adj_list)
+print(max_regions_colored)
