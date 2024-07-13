@@ -1,0 +1,6 @@
+def solve_n_queens_8x10():
+    pass
+def solve_n_queens_obstacles_5x5():
+    pass
+def solve_n_queens_restricted_6x6():
+    pass
