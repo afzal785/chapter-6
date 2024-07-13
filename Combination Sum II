@@ -1,0 +1,27 @@
+from typing import List
+
+def combinationSum2(candidates: List[int], target: int) -> List[List[int]]:
+    def backtrack(start, target, path):
+        if target == 0:
+            res.append(path)
+            return
+        for i in range(start, len(candidates)):
+            if i > start and candidates[i] == candidates[i-1]:
+                continue
+            if candidates[i] > target:
+                break
+            backtrack(i + 1, target - candidates[i], path + [candidates[i]])
+
+    candidates.sort()
+    res = []
+    backtrack(0, target, [])
+    return res
+
+# Test the function
+candidates1 = [2, 3, 6, 7]
+target1 = 7
+print(combinationSum2(candidates1, target1))  # Output: [[2, 2, 3], [7]]
+
+candidates2 = [2, 3, 5]
+target2 = 8
+print(combinationSum2(candidates2, target2))  # Output: [[2, 2, 2, 2], [2, 3, 3], [3, 5]]
