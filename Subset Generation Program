@@ -1,0 +1,17 @@
+from itertools import combinations
+
+def subsets(nums):
+    res = []
+    for i in range(len(nums)+1):
+        res += list(combinations(nums, i))
+    return res
+
+# Example 1
+nums1 = [1, 2, 3]
+output1 = subsets(nums1)
+print(output1)
+
+# Example 2
+nums2 = [0]
+output2 = subsets(nums2)
+print(output2)
